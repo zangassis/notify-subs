@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Subscription.Contract.Models;
 
-namespace Delayed.Notification.Job.Data;
+namespace Subscription.Contract.Data;
 public class NotificationContext : DbContext
 {
     public NotificationContext(DbContextOptions options) : base(options)

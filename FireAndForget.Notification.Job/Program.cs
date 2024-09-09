@@ -1,8 +1,8 @@
-
-using FireAndForget.Notification.Job.Data;
 using FireAndForget.Notification.Job.Services;
 using Hangfire;
 using Microsoft.EntityFrameworkCore;
+using Subscription.Contract.Data;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +17,10 @@ builder.Services.AddHangfireServer();
 builder.Services.AddTransient<FireAndForgetService>();
 
 var app = builder.Build();
+
+var cultureInfo = new CultureInfo("en-US");
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
 app.UseHangfireDashboard();
 

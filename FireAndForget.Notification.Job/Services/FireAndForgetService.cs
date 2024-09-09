@@ -1,5 +1,5 @@
-﻿using FireAndForget.Notification.Job.Data;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Subscription.Contract.Data;
 using Subscription.Contract.Models;
 
 namespace FireAndForget.Notification.Job.Services;

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Recurring.Notification.Job.Data;
+using Subscription.Contract.Data;
 using Subscription.Contract.Models;
 
 namespace Recurring.Notification.Job.Services;

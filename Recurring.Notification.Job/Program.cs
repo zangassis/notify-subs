@@ -1,8 +1,9 @@
 using Hangfire;
 using Microsoft.EntityFrameworkCore;
-using Recurring.Notification.Job.Data;
 using Recurring.Notification.Job.Services;
+using Subscription.Contract.Data;
 using Subscription.Contract.Models;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,9 @@ app.UseHangfireDashboard();
 app.UseHangfireServer();
 
 var recurringJobManager = app.Services.GetRequiredService<IRecurringJobManager>();
+
+var filter = GlobalJobFilters.Filters.Where(x => x.Instance is CaptureCultureAttribute).Single().Instance;
+GlobalJobFilters.Filters.Remove(filter);
 
 recurringJobManager.AddOrUpdate<NotificationService>("SendExpirationNotifications", service =>
     service.SendExpirationNotificationsAsync(), Cron.Minutely);

@@ -1,7 +1,8 @@
-using Delayed.Notification.Job.Data;
 using Delayed.Notification.Job.Services;
 using Hangfire;
 using Microsoft.EntityFrameworkCore;
+using Subscription.Contract.Data;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,10 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<NotificationContext>(x => x.UseSqlServer(connectionString));
 
 builder.Services.AddHangfire(config => config.UseSqlServerStorage(connectionString));
+
+var cultureInfo = new CultureInfo("en-US");
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
 builder.Services.AddHangfireServer();
 
